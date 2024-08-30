@@ -21,23 +21,22 @@ cd $builddir
 mkdir -p /home/$username/.config
 mkdir -p /home/$username/.fonts
 mkdir -p /home/$username/Pictures
-cp .Xresources /home/$username
-cp .Xnord /home/$username
+#cp .Xresources /home/$username
+#cp .Xnord /home/$username
 cp -R dotconfig/* /home/$username/.config/
 cp bg.jpg /home/$username/Pictures/background.jpg
 mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
-nala install feh bspwm sxhkd kitty arandr rofi polybar picom thunar lxpolkit x11-xserver-utils unzip yad wget pulseaudio pavucontrol -y
+nala install feh kitty arandr rofi picom thunar lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 # Installing Other less important Programs
-nala install neofetch flameshot psmisc vim lxappearance papirus-icon-theme fonts-noto-color-emoji lightdm zoxide -y
+nala install neofetch flameshot psmisc nvim lxappearance papirus-icon-theme fonts-noto-color-emoji lightdm zoxide -y
 
 # Download Nordic Theme
 cd /usr/share/themes/
 wget https://github.com/EliverLara/Sweet/releases/download/v4.0/Sweet-Dark-v40.zip
-unzip Sweet-Dark-v40.zip
-rm Sweet-Dark-v40.zip
+#git clone https://github.com/EliverLara/Nordic.git
 
 # Installing fonts
 cd $builddir 
@@ -71,9 +70,6 @@ nala install brave-browser -y
 # Enable graphical login and change target from CLI to GUI
 systemctl enable lightdm
 systemctl set-default graphical.target
-
-# Polybar configuration
-bash scripts/changeinterface
 
 # Use nala
 bash scripts/usenala
